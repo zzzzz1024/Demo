@@ -3,11 +3,16 @@ import dedent from 'dedent';
 function capture_display_text() {
   // 通过 substitudeMacros 我们可以解析酒馆宏
   const character_name = substitudeMacros('{{char}}');
+  console.log('myLog_character_name:', character_name);
 
   // 通过 getCurrentMessageId 我们可以获取界面所在的楼层号
   const message_id = getCurrentMessageId();
+  console.log('myLog_message_id:', message_id);
+
   // 通过 getChatMessages 我们可以获取楼层内容
   const chat_message = getChatMessages(message_id)[0];
+  console.log('myLog_getChatMessages(message_id):', getChatMessages(message_id));
+
   // 我们可以从楼层的消息中通过正则提取出对话内容, 由于这是在代码中做, 相比起直接用酒馆正则会更加方便: 我们完全可以用其他代码对文本进行更多处理
   const dialogue = chat_message.message.match(/\[查看日记[:：]\s*(.+)\]/)?.[1] ?? '';
 
